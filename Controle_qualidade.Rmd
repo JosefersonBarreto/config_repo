@@ -1,0 +1,527 @@
+---
+title: <a style="text-align:center"><img src="https://www.infoescola.com/wp-content/uploads/2018/05/UEPB.png" width="1200" height="360" /></a>Análise do Processo da Produção de Leite </a>
+  Controle de Qualidade  <font color='white' face="Roman"> </font>-Relatório Final  <font color='black' face="Roman"> Prof. Hiago Andrade  </font>
+author: <font color='black' face="Arial Black">joseferson da silva barreto  </font>
+date: <font color='black'> 2023/06/24 
+output: 
+  #rmarkdown::html_document:
+  #prettydoc::html_pretty:
+  html_document:
+    # toc: true
+    # toc_float: true
+    css: www/meu_cs01.css
+   #theme: 
+      #ersion: 4
+     # bg: "#9ac7db"
+      #fg: "#5757b1" 
+      #primary: "#5c2cca"
+     # navbar-bg: "#13173C"
+      #base_font: 
+       # google: Prompt
+      #heading_font:
+       # google: Sen
+      #code_font:
+       # google: 
+          # arguments to sass::font_google() 
+          #family: JetBrains Mono
+         # local: false
+      #code_font:
+       # google: 
+          # arguments to sass::font_google() 
+        #  family: JetBrains Mono
+        #  local: false
+---
+
+
+
+
+<div class = "blue">
+
+
+<font color='black'>
+
+```{css my-header-colors, echo = FALSE}
+.page-header {
+     color: #fff;
+  text-align: left;
+  background-color: #9ac7db;
+    background-image: linear-gradient(120deg, #11706f, #9ac7db);
+}
+
+body {
+  background-color: #9ac7db;
+  
+}
+
+badCode {
+background-color: red;
+}
+
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: purple;
+}
+
+
+.main-container {
+    max-width: 940px;
+    margin-left: unset;
+    margin-right: auto;
+}
+```
+
+
+ <font color='black' face="Arial Black" size=20> Relatório Referente à Análise da Produção de leite em Uma Fazenda </font>  
+
+
+
+
+
+# <font color='black' face="Arial Black"> Sumário </font>
+
+* **Resumo**
+
+* **Introdução**
+
+* **Metodologia**
+
+* **Discursão e Resultados**
+
+* **Conclusões** 
+
+* **Referências** 
+
+
+
+
+
+
+
+
+
+
+  
+
+## <font color='black' face="Arial Black"> Resumo </font>  
+
+Este trabalho tem como objetivo observar a produção de leite de três vacas ao longo de um período de 20 dias, com base nos registros diários de quantidade de leite obtida tanto pela manhã quanto à tarde. Esses dados foram coletados com o propósito de analisar a eficácia da utilização de ração bovina onde foram utilizadas  técnicas de controle de qualidade  para identificar padrões na produção leiteira.  Este projeto é uma especie de continuação  do projeto anterior, sobre parcelas subdivididas em blocos casualizados(DBC), para 
+acessa-lo [clique aqui](https://rpubs.com/joseferson/DBC_parcelas_sub/).
+
+
+## <font color='black' face="Arial Black"> Introdução  </font>  
+
+
+
+```{r warning=FALSE, echo=FALSE, message=FALSE, out.height=='50%'}
+knitr::include_graphics("indubrasil.jpg")
+
+```
+
+
+
+A produção de leite no Brasil desempenha um papel fundamental na economia agrícola do país. Uma alimentação adequada é essencial para garantir o bem-estar animal, a saúde do rebanho e o desempenho produtivo na produção de leite. O fornecimento de uma dieta equilibrada, que atenda às necessidades nutricionais dos animais, é fundamental para promover o crescimento, a reprodução e a produção de leite de forma eficiente.A dieta dos bovinos leiteiros deve ser composta por uma combinação adequada de volumosos (como capim, silagem e feno) e concentrados (como grãos e suplementos). A disponibilidade de pastagens de qualidade e o manejo correto dos alimentos são aspectos-chave para assegurar a oferta de nutrientes necessários, tais como proteínas, carboidratos, minerais e vitaminas.
+
+Além disso, é importante ressaltar a relevância do balanceamento nutricional, levando em consideração as características de cada fase da produção do leite. Por exemplo, durante a fase de lactação, as vacas leiteiras possuem demandas nutricionais específicas para suportar a produção de leite e manter a saúde do animal.Uma alimentação adequada influencia diretamente na produtividade e qualidade do leite. Vacas bem nutridas tendem a produzir mais leite e apresentar maior persistência na lactação. Além disso, a qualidade do leite, em termos de teor de gordura, proteína e outros componentes, pode ser melhorada por meio de uma dieta balanceada, refletindo-se na valorização do produto final.
+
+
+Além disso, a alimentação adequada do rebanho desempenha um papel crucial na produção de leite no Brasil. A nutrição balanceada dos bovinos leiteiros promove a saúde e o bem-estar animal, impactando positivamente na produtividade e qualidade do leite. Investir em programas de manejo alimentar, aliados ao uso de tecnologias e práticas sustentáveis, é fundamental para o desenvolvimento e fortalecimento do setor, contribuindo para a competitividade e o sucesso da indústria leiteira brasileira.
+
+
+
+### <font color='black' face="Arial Black"> Objetivo: </font> 
+
+Verificar se a produção de leite com a alimentação dos animais com pasta bovina está sob controle
+
+
+# <font color='black' face="Arial Black"> Metodologia </font>    
+para a análise e os demais processamentos foram utilizados a linguagem de programação R e software RStudio   
+
+
+# <font color='black' face="Arial Black"> Discursão e Resultados </font> 
+
+## <font color='black' face="Arial Black">  Diagrama de Causa e efeito  </font>     
+
+Antes de prossequirmos para as análises vamos definir o diagrama de causa e efeito referente a produção de leite.
+
+
+O diagrama de causa e efeito, também conhecido como diagrama de espinha de peixe ou diagrama de Ishikawa, é uma ferramenta visual que ajuda a identificar e entender as possíveis causas de um problema ou efeito indesejado. Ele foi desenvolvido pelo professor Kaoru Ishikawa, da Universidade de Tóquio, no Japão.
+
+A estrutura do diagrama de causa e efeito se assemelha a uma espinha de peixe, daí seu nome alternativo. A espinha representa o efeito ou problema a ser investigado, e as "costelas" representam diferentes categorias de possíveis causas relacionadas a esse efeito. Essas categorias geralmente incluem pessoas (ou mão de obra), métodos (ou processos), máquinas (ou equipamentos), materiais, medições (ou métodos de medição) e meio ambiente (ou ambiente físico). abaixo veja o diagrama de caso e efeito do nosso problema:
+
+```{r warning=FALSE, echo=FALSE, message=FALSE}
+knitr::include_graphics("diagrama.png")
+
+```
+
+
+## <font color='black' face="Arial Black">  Visualização dos 10 primeiros dados do Banco de Dados</font>  
+  
+
+
+```{r warning=FALSE, echo=FALSE, message=FALSE}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+blue.theme<-theme(plot.background = element_rect(fill = '#9ac7db'),
+                  
+                  plot.title=element_text(colour='#181819',
+                                          hjust=.5),
+                  plot.subtitle=element_text(colour =  '#9ac7db',
+                                             hjust=.5),
+                  legend.title = element_text(colour='#181819',
+                                              hjust=.5),
+                  #legend.box.background =  element_rect(fill="lightblue",
+                                                        #size=0.5, linetype="solid")
+                  legend.background = element_blank(),
+                  legend.box.background = element_blank(),
+                  legend.key = element_blank(),
+                  axis.text=element_text(colour = '#181819'),
+                  panel.background =element_rect(fill = '#9ac7db'),
+                  panel.grid.major.x = element_blank(),
+                  panel.grid.minor.x = element_blank(),
+                  panel.grid.minor.y = element_blank(),
+                  panel.grid.major.y = element_blank(),
+                  axis.ticks.x.bottom = element_blank(),
+                  axis.ticks.x = element_blank(),
+                  axis.title = element_text(colour ='#181819'))
+
+
+
+#teste<-read.table("C:/Users/joseferson/Documents/joseferson barreto/projeto-final-planejamento2/psubDBC.txt")
+ dados <- read_excel("C:/Users/joseferson/Documents/joseferson barreto/projeto-final-planejamento2/dados.xlsx") 
+ # Criar nova coluna "dias"
+dados$dias <- rep(1:(nrow(dados) %/% 2 + 1), each = 2)[1:nrow(dados)]
+
+
+# Calcular soma dos valores por dia
+# renomeano oo turno dia para manhã
+dados <- dados %>%
+  mutate(Turno = ifelse(Turno == "dia", "manhã", Turno))
+
+
+dados2<- dados[1:40,]
+
+ # Converter coluna "racao_Comun" para numérica
+dados2$pasta_bovin <- as.numeric(dados2$pasta_bovin)
+
+
+ 
+# Calcular soma dos valores por dia
+
+base <- dados2|> 
+  select(dias,Turno,pasta_bovin) |> 
+  filter(Turno =='manhã')
+
+#  criando uma nova coluna que recebra 0s dados da tarde 
+
+
+# Criando um novo dataframe "dados2" com a nova coluna
+base <- base %>%
+  mutate(tarde_leite = dados2 %>%
+           filter(Turno == "tarde") %>%
+           pull(pasta_bovin))
+
+
+
+#renomeando as colunas
+
+base<-base |> select(dias,pasta_bovin,tarde_leite)
+
+
+colnames(base)<- c("dias","leite_manha","leite_tarde")
+
+ library(knitr)
+kable(head(base, 10))
+
+
+#write.csv(base,'base.csv', row.names = F)
+
+
+#writexl::write_xlsx(base,"base.xlsx")
+```
+
+
+
+
+
+Podemos perceber que temmos informações  sobre o turno da manhã e da tarde , podemos então calcular a media do dia e a amplitude 
+
+
+
+
+```{r warning=FALSE, message=FALSE}
+#Calcular as médias e amplitudes
+base$media <- rowMeans(base[, c("leite_manha", "leite_tarde")])
+#base$amplitude <- apply(base[, c("leite_manha", "leite_tarde")], 1, diff)
+
+base$amplitude <- apply(base[, c("leite_manha", "leite_tarde")], 1, function(x) max(x) - min(x))
+
+kable(head(base, 10))
+```
+
+
+```{r warning=FALSE, message=FALSE, include=FALSE}
+# Carregar o pacote qcc
+library(qcc)
+# Carregar o pacote qcc
+library(qcc)
+
+# Criar o vetor de causas
+causas <- c("Alimentação", "Ambiente", "Genética", "manejo", "Estresse", "Sono")
+
+# Definir os pesos correspondentes às causas
+pesos <- c(0.5, 0.2, 0.1, 0.2, 0.3, 0.1)
+
+
+cause.and.effect(title = "Diagrama de Causa e Efeito da Produção de Leite",cause = list(
+   manejo = c("O manejo adequado dos animais, incluindo práticas \n de ordenha, cuidados sanitários, monitoramento da  \n saúde e bem-estar,  também influencia a produção de \n leite."),
+   sono =c("Assim como os seres humanos, as vacas \nleiteiras precisam de períodos adequados de descanso \n e sono para se recuperarem e manterem sua saúde"),
+   alimentação =c(" A qualidade e a composição da dieta dos animais afetam diretamente \n a quantidade e a qualidade do leite produzido. \n Uma alimentação balanceada e adequada em termos de nutrientes \n essenciais, como proteínas, carboidratos, vitaminas e minerais, é  \n fundamental  para garantir uma boa produção de leite."),
+   Genética = c(" Características genéticas como \n a produção de leite,  eficiência alimentar \n e resistência a doenças podem variar\n  entre as raças e até mesmo entre os indivíduos \n dentro de uma mesma raça"),
+   estresse = c("O estresse crônico ou agudo pode afetar \n a saúde e o bem-estar das vacas leiteiras, resultando \n em uma diminuição na produção de leite"),
+   ambiente =c("O ambiente em que os animais são criados também pode \n influenciar a produção de leite. Fatores ambientais, como \n a temperatura, umidade, qualidade do ar e conforto  \n das instalações, podem afetar o bem-estar  \n das vacas leiteiras e, consequentemente, sua produção de leite")),effect ="desempenho")
+```
+
+
+## <font color='black' face="Arial Black">  Fazendo o Gráfico Xbarra</font>  
+
+
+ Como o **A2** para **n=2**  é 1.880 logo  os limites  superior e inferior será:
+ 
+$LSC = \bar{\bar{x}} + A2* \bar{R}$
+
+
+$LIC = \bar{\bar{x}} - A2* \bar{R}$
+
+
+Além disso, o limite central **LC**  é dados por  $\bar{\bar{x}}$. Logo, ficamos com o
+seguinte gráfico:
+
+```{r warning=FALSE, echo=FALSE, message=FALSE , include=FALSE}
+
+A2 <- 1.880
+ggplot(base, aes(x = dias, y = media)) +
+  geom_line() +
+  geom_hline(yintercept = mean(base$media), linetype = "dashed", color = "blue") +
+  geom_hline(yintercept = mean(base$media) +  (A2*mean(base$amplitude)), linetype = "dotted", color = "red") +
+  geom_hline(yintercept = mean(base$media) -  (A2*mean(base$amplitude)), linetype = "dotted", color = "red") +
+  labs(x = "Dias", y = "Média") +
+  ggtitle("Gráfico de Controle Xbar") +
+  theme_minimal()
+
+
+# Teste de normalidade Kolmogorov-Smirnov
+#resultado <- ks.test(dados2$pasta_bovin, "pnorm")
+
+# Exibindo o resultado
+#print(resultado)
+
+```
+
+ 
+### <font color='red' face="Arial Black">  Observação </font> 
+** porque utilizar o gráfico Xbarra?**
+
+Bom, a resposta é simples, como temos as informações da produção de leite ,logo nossa variável é do tipo númerica , grafico como os gráficos: P, C e U  são gráficos para variáveis não númericas, ou seja, variáveis do tipo atributos como:   **Haste empenada, Chips que não funcionam,
+Embalagens com defeitos.** Portanto, para o nosso problema o gráfico xbarra era o mais indicado,levando em consideração  o projeto anterior de parcelas sub dividadas onde executamos o teste de normalidade e rejeitamos a hipótese de normalidade,  então usamos o A2 com baso no tamanho de n , mas podiamos utilizar  a médiia e o desvio  padrão estimado, pois mesmo na
+hipótese de não-normalidade da variável X, devidoao Teorema Central do Limite poderiamos utilizar a média e o desvio padrão estimado.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(base, aes(x = dias, y = media)) +
+   geom_point() + geom_line() +
+   geom_hline(yintercept = mean(base$media), col = "blue", lwd = 1) +
+  geom_hline(yintercept = mean(base$media) +  (A2*mean(base$amplitude)), col = "red", lty = 2, lwd = 1) +
+  geom_hline(yintercept = mean(base$media) -  (A2*mean(base$amplitude)), col = "red", lty = 2, lwd = 1) +
+  labs(title = "Gráfico de Controle - Xbarra da Produção de Leite ",
+       x = "Dia", y = "Valoress em litros")
+
+
+```
+
+ podemos notar que o processo aparenta estar sob controle 
+
+
+## <font color='black' face="Arial Black">  Gráfico da Amplitude </font>  
+
+onde $D4 = 3.267$  e  $D3 = 0$
+```{r warning=FALSE, echo=FALSE, message=FALSE}
+
+
+#summary(dados)
+D4 =  3.267
+D3=0
+
+ggplot(base, aes(x = dias, y = amplitude)) +
+   geom_point() + geom_line() +
+   geom_hline(yintercept = mean(base$amplitude), col = "blue", lwd = 1) +
+  geom_hline(yintercept = D4 * mean(base$amplitude), col = "red", lty = 2, lwd = 1) +
+  geom_hline(yintercept = D3 * mean(base$amplitude), col = "red", lty = 2, lwd = 1) +
+  labs(title = "Gráfico de Controle - Amplitude")
+```
+
+
+
+## <font color='black' face="Arial Black">  Gráfico S   </font>
+
+Atrávez do gráfico S podemos monitorar a variabilidade do processo , o limites são definidos como :
+
+$$LSC = B4 * \overline{S}$$    e
+
+
+
+$$ LIC = B3 * \overline{S}$$
+ sendo 
+
+$B4 =3,267$     e $B3 =0$ , onde  $n=2$ . Além disso  $LC = \overline{S}$
+
+logo:
+
+
+```{r}
+# Instale o pacote ggplot2 se ainda não estiver instalado
+# install.packages("ggplot2")
+B4 =3.267   
+B3 =0
+# Carregue o pacote ggplot2
+
+
+# Crie um data frame com os dados fornecidos
+dados5 <- data.frame(
+  dias = 1:20,
+  leite_manha = c(41, 37, 37, 36, 37, 38, 40, 36, 42, 37, 35, 35, 39, 42, 41, 35, 37, 40, 37, 39),
+  leite_tarde = c(41, 40, 36, 40, 39, 40, 35, 37, 39, 37, 38, 35, 37, 36, 36, 40, 38, 35, 41, 38)
+)
+
+# Calcule o desvio padrão para cada dia
+dados5$desvio_padrao <- apply(dados5[, -1], 1, sd)
+
+# Calcule os limites de controle
+
+
+# Crie o gráfico S usando ggplot2
+ggplot(dados5, aes(x = dias, y = desvio_padrao)) +
+   geom_point() + geom_line() +
+   geom_hline(yintercept = mean(dados5$desvio_padrao), col = "blue", lwd = 1) +
+  geom_hline(yintercept = B4*mean(dados5$desvio_padrao), col = "red", lty = 2, lwd = 1) +
+  geom_hline(yintercept = B3*mean(dados5$desvio_padrao), col = "red", lty = 2, lwd = 1) +
+  labs(title = "Gráfico de Controle - S da Produção de Leite ",
+       x = "Dia", y = "Valoress em litros")
+
+
+
+
+
+```
+
+ Podemos perceber que 3 pontos assim como no gráfico da amplitude,  que ficaram em cima do limite inferior, entretanto, analisando nossos dados isso indica que apenas não ouve variação na produção de leite entre os turno naquele dia em especifico, ou seja, a produção de leite de manhã e tarde foi exatamente a mesma .
+
+## <font color='black' face="Arial Black">  capacidade do processo $(C_{p})$ </font>
+
+A Capacidade do Processo ($C_{p}$) é uma medida utilizada na área de controle de qualidade para avaliar a capacidade de um processo em produzir produtos ou serviços dentro dos limites especificados. O $C_{p}$ é um índice que compara a variação natural do processo com a variação permitida pelas especificações do produto ou serviço.
+
+O cálculo do $C_{p}$ envolve a determinação da variação do processo em relação às tolerâncias especificadas. Para calcular o $C_{p}$, é necessário conhecer a capacidade de variação do processo, geralmente expressa como o desvio padrão ou o desvio padrão médio (também conhecido como sigma), e as especificações do produto ou serviço, que podem ser as tolerâncias superiores e inferiores.
+
+
+A fórmula para calcular o Cp é a seguinte:
+
+$$\hat{C}_{p} = \frac{(LSE - LIE)} {6  \hat{\sigma}}$$
+
+  
+
+
+Vamos calculapa a capacidade do processo,mas primeiro temos que calcular o desvio padrão  que é dado por :    $$ \hat{\sigma} = \frac{\overline{R}}{d2}$$.
+
+
+
+
+
+Sendo assim, $\overline{R}$ = `r mean(base$amplitude)`  e d2 =1,128 de n =2 
+
+
+$$ \hat{\sigma} = \frac{2,65}{1,128} = 2,35$$
+
+
+```{r,echo=FALSE,include=FALSE}
+#round(2.65/1.128,3)
+``` 
+
+para $\alpha= 0,05$ 
+
+logo:  $$\hat{C}_{p} = \frac{(38.02 - 37.92)} {6  * 2.349} = 0,0071$$   
+
+
+podemos inferir que a variação natural do processo é muito maior do que a variação permitida pelas especificações. Isso indica que o processo possui uma capacidade limitada para produzir resultados dentro dos limites estabelecidos.
+
+## <font color='black' face="Arial Black">  Porcentagem da Faixa de Especificação   $C_{p}$ </font>
+
+Ela é dada pela a formula:
+
+$$\hat{P}= (\frac{1}{\hat{C_p}})*100$$
+$$\hat{P}= (\frac{1}{\hat{0,0071}})*100 = 14.084,51\% $$
+Apenas a título de curiosidade, embora nossa capacidade do processo ter cido muito baixa, obtivemos um valor estremamente alto para a percentagem da faixa de especificação do processo.
+Quando a percentagem da faixa de especificação utilizada é alta, isso sugere que os dados do processo estão se concentrando dentro dos limites de especificação. Isso é considerado desejável, pois significa que o processo está produzindo resultados que atendem às especificações estabelecidas. Embora a Percentagem da faixa de especificação tenha sido extremamente alta 
+
+```{r message=FALSE, warning=FALSE, echo=FALSE , include=FALSE}
+# para alfa  =0,05
+
+#calculando a proporção
+#(1/0.0071)*100
+#((38.02 - 37.92)/(6*2.349)) =0,0071
+
+#37.97-0.05
+
+
+(38.02 - 37.92) / (6 * 2.349)
+mean(base$media)
+```
+ 
+  
+
+
+
+# <font color='black' face="Arial Black">  Conclusão  </font>   
+
+
+<!-- Após definirmos nossas amostras e realizar as análises dos gráficos de controle, percebemos qque o processo está sob controle de acordo as amostras coletadas,porém dificilmente ele se manterá nesses limites ao longo dos meses, oque já era esperado pelo fato que nossos dados apenas 3 vacas estão sendo estudadas durante 6 meses,até que  as 3 vacas sejam apartadas do filhote, ou seja,parem de dar leite. Constatou-se  ao observar a capacidade do processo que  dificilmente o processo se manterá dentro dos limites especificados durante os 20 primeiros dias. Sendo assim , se quisessemmos analisar 2 meses por exemplo ,talvez fosse mais interessante a utilização de limites flutuantes . Os limites flutuantes permitem que os limites de controle sejam ajustados com base nos dados mais recentes, refletindo melhor a variabilidade atual do processo. Dessa forma, eles podem ser mais sensíveis às variações significativas que ocorrem ao longo dos meses, mesmo que essas variações estejam dentro de limites estatísticos considerados aceitáveis. -->
+
+
+
+Após definirmos nossas amostras e realizar as análises dos gráficos de controle, percebemos que o processo está sob controle de acordo com as amostras coletadas. No entanto, é improvável que ele se mantenha dentro desses limites ao longo dos meses, o que já era esperado, uma vez que estamos estudando apenas três vacas por um período de seis meses, até que elas sejam apartadas dos filhotes e parem de dar leite. Ao observar a capacidade do processo, constatou-se que é difícil manter o processo dentro dos limites especificados nos primeiros 20 dias. Nesse sentido, se desejarmos analisar um período de dois meses, por exemplo, talvez seja mais interessante utilizar limites flutuantes. Os limites flutuantes permitem que os limites de controle sejam ajustados com base nos dados mais recentes, refletindo melhor a variabilidade atual do processo. Dessa forma, eles podem ser mais sensíveis às variações significativas que ocorrem ao longo dos meses, mesmo que essas variações estejam dentro dos limites estatísticos considerados aceitáveis.
+
+
+
+
+# <font color='black' face="Arial Black"> Referências   </font>
+
+
+
+
+Depto. de Ciências Exatas-UFLA, C.P. 37, CEP: 37200-000 - Lavras, MG.
+São Paulo - Escola Superior de Agricultura "Luiz de Queiroz". EXPERIMENTOS EM PARCELAS SUBDIVIDIDAS COM TRATAMENTOS PRIMÁRIOS EM BLOCOS INCOMPLETOS PARCIALMENTE BALANCEADOS: II. ANÁLISE INTRABLOCOS . A.R. de MORAIS2; M.C.S. NOGUEIRA3, Jan 1996, DISPONÍVEL EM:
+<https://www.scielo.br/j/sa/a/LBrHXVfgRfhnH9SDxM9XpsJ/?lang=pt>
+
+Hoffman, Rodolfo. Estatística para Economistas. 4ª edição. Biblioteca de Laranjeiras do Sul.
+
+Montgomery, Douglas C. Introdução ao Controle Estatístico da Qualidade. 7ª edição. Editora LTC, 10 de junho de 2016.
+
+Barreto,Joseferson. Análise da produção de leite em uma Fazenda utilizando DBC - Delineamento em Blocos Casualizados,utilizando parcelas Subdivididas. 2021
+
+
+
+
+
+# <font color='black' face="Arial Black"> Acesse meus outros projetos :   </font> 
+
+
+
+site oficial :
+
+ <a href="https://josefersonbarreto.github.io/portifolio/">
+  <img
+    src="site.png"
+    width="400"
+    height="200"
+  />
+</a> 
